@@ -1,7 +1,7 @@
 // Проверка длины строк
 
-function checkLengthString(string, maxLenght) {
-  if (string.lenght <= maxLenght) {
+function checkLengthString(string, maxLength) {
+  if (string.length <= maxLength) {
     return true;
   } else {
     return false;
@@ -23,7 +23,7 @@ function checkPalindrom(string) {
   string = string.replaceAll(' ', '');
 
   let reversed = '';
-  for (let i = string.lenght - 1; i >= 0; i--) {
+  for (let i = string.length - 1; i >= 0; i--) {
     reversed = reversed + string[i];
   }
   return string === reversed;
@@ -35,3 +35,5 @@ checkPalindrom('топот'); // true
 checkPalindrom('ДовОд'); // true
 // Это не палиндром
 checkPalindrom('Кекс'); // false
+// Это палиндром
+checkPalindrom('Лёша на полке клопа нашёл '); // true
