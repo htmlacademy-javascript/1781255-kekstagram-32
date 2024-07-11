@@ -58,13 +58,22 @@ const DESCRIPTIONS = [
   'Домой, пора домой!',
 ];
 
-const LIKES_MIN = 15;
-const LIKES_MAX = 200;
-const MAX_PHOTOS = 25;
-const COMMENT_MIN = 0;
-const COMMENT_MAX = 30;
-const AVATAR_MIN = 1;
-const AVATAR_MAX = 6;
+const Likes = {
+  MIN: 15,
+  MAX: 200,
+};
+const Photos = {
+  MIN: 0,
+  MAX: 25
+};
+const Comment = {
+  MIN: 0,
+  MAX: 30,
+};
+const Avatar = {
+  MIN: 1,
+  MAX: 6,
+};
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -78,22 +87,19 @@ const getRandomArrayElement = (items) =>
 
 const createIdGenerator = () => {
   let numberId = 0;
-  return () => {
-    numberId ++;
-    return numberId;
-  };
+  return () => ++numberId;
 };
 
 const generateRandomId = createIdGenerator();
 
 const createMessage = () => Array.from(
-  {length: getRandomInteger(1, 2)},
+  {length: getRandomInteger(Comment.MIN, Comment.MAX)},
   () => getRandomArrayElement(COMMENT_LINES),
 );
 
 const createComment = () => ({
   id: generateRandomId(),
-  avatar: `img/avatar-${getRandomInteger(AVATAR_MIN, AVATAR_MAX)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(Avatar.MIN, Avatar.MAX)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
@@ -102,21 +108,21 @@ const createPicture = (index) => ({
   id: index,
   url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
+  likes: getRandomInteger(Likes.MIN, Likes.MAX),
   comments: Array.from(
-    {length: getRandomInteger(COMMENT_MIN, COMMENT_MAX)},
+    {length: getRandomInteger(Comment.MIN, Comment.MAX)},
     createComment
   )
 });
 
 const getPictures = () => Array.from(
-  {length: MAX_PHOTOS},
+  {length: Photos.MAX},
   (_, index) => createPicture(index + 1)
 );
 
 getPictures();
 
 console.log(Array.from(
-  {length: MAX_PHOTOS},
+  {length: Photos.MAX},
   (_, index) => createPicture(index + 1)
 ));
