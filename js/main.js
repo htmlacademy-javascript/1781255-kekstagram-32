@@ -115,9 +115,6 @@ const getPictures = () => Array.from(
   (_, index) => createPicture(index + 1)
 );
 
-getPictures();
+const pictures = getPictures();
 
-console.log(Array.from(
-  {length: Photos.MAX},
-  (_, index) => createPicture(index + 1)
-));
+console.log(pictures);
