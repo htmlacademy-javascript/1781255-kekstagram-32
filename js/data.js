@@ -103,6 +103,7 @@ const getPictures = () => Array.from(
 );
 
 const pictures = getPictures();
+// eslint-disable-next-line no-console
 console.log(pictures);
 
 export {getPictures};
