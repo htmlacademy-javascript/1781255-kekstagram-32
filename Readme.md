@@ -1,6 +1,6 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Мария Бушева] (https://up.htmlacademy.ru/javascript/32/user/1781255).
+* Студент: [Мария Бушева](https://up.htmlacademy.ru/javascript/32/user/1781255).
 * Наставник: [Дмитрий Беллавин](https://htmlacademy.ru/profile/bellavin).
 
 ---
