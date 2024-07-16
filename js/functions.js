@@ -56,9 +56,10 @@ const checkMeetingTime = (startDay, endDay, startMeeting, meetingTime) => {
   const startDayMinutes = getTimeInMinutes(startDay);
   const endDayMinutes = getTimeInMinutes(endDay);
   const startMeetingMinutes = getTimeInMinutes(startMeeting);
+  const meeting = startMeetingMinutes + meetingTime;
 
   return startMeetingMinutes >= startDayMinutes &&
-  startMeetingMinutes + meetingTime <= endDayMinutes;
+  meeting <= endDayMinutes;
 };
 
 
