@@ -1,23 +1,24 @@
-const thumbNailTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const container = document.querySelector('.pictures');
+const thumbnailTemplateElement = document.querySelector('#picture').content.querySelector('.picture');
+const containerElement = document.querySelector('.pictures');
 
 const createThumbnail = (picture) => {
-  const thumbnail = thumbNailTemplate.cloneNode(true);
-  thumbnail.querySelector('.picture__img').src = picture.url;
-  thumbnail.querySelector('.picture__img').alt = picture.description;
-  thumbnail.querySelector('.picture__likes').textContent = picture.likes;
-  thumbnail.querySelector('.picture__comments').textContent = picture.comments.length;
-  return thumbnail;
+  const thumbnailElement = thumbnailTemplateElement.cloneNode(true);
+  const img = thumbnailElement.querySelector('.picture__img');
+  img.src = picture.url;
+  img.alt = picture.description;
+  thumbnailElement.querySelector('.picture__likes').textContent = picture.likes;
+  thumbnailElement.querySelector('.picture__comments').textContent = picture.comments.length;
+  return thumbnailElement;
 };
 
 const generateThumbnails = (pictures) => {
   const fragment = document.createDocumentFragment();
   pictures.forEach((picture) => {
-    const thumbnail = createThumbnail(picture);
-    fragment.append(thumbnail);
+    const thumbnailElement = createThumbnail(picture);
+    fragment.append(thumbnailElement);
   });
 
-  container.append(fragment);
+  containerElement.append(fragment);
 };
 
 export {generateThumbnails};
