@@ -1,4 +1,7 @@
-import { getPictures } from './data.js';
+import {getPictures} from './data.js';
 import {generateThumbnails} from './thumbnail.js';
+import {createBigPhoto} from './full-photo.js';
 
-generateThumbnails(getPictures());
+const data = getPictures();
+generateThumbnails(data);
+createBigPhoto(data);
