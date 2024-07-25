@@ -1,5 +1,5 @@
 import {escapeKey} from './util.js';
-import {clearComments, displayComments} from './comments.js';
+import {displayComments} from './comments.js';
 
 const createBigPhoto = (listPictures) => {
   const bigPictureElement = document.querySelector('.big-picture');
@@ -30,7 +30,6 @@ const createBigPhoto = (listPictures) => {
     bigPictureElement.querySelector('.big-picture__img img').src = url;
     bigPictureElement.querySelector('.likes-count').textContent = likes;
     bigPictureElement.querySelector('.social__caption').textContent = description;
-    clearComments();
     displayComments(comments);
   };
 
