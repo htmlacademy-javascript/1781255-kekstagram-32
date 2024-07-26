@@ -1,8 +1,8 @@
 const MAX_HASHTAGS = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const errorText = {
-  INVALID_COUNT: `Максимум ${MAX_HASHTAGS} хэштегов`,
-  NOT_UNIQUE: 'Хэштеги должны быть уникальными',
+  INVALID_COUNT: `Превышен максимум хэштегов: ${MAX_HASHTAGS}`,
+  NOT_UNIQUE: 'Хэштеги не уникальные',
   INVALID_PATTERN: 'Неправильный хэштег',
 };
 
@@ -15,7 +15,7 @@ const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
 
 const pristine = new Pristine(form, {
-  classTo: 'img-uplosd__field-wrapper',
+  classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper__error',
 });
