@@ -1,23 +1,44 @@
 const commentListElement = document.querySelector('.social__comments');
 const commentElement = document.querySelector('.social__comment');
+const commentsLoaderElement = document.querySelector('.comments-loader');
+const commentsShownElement = document.querySelector('.social__comment-shown-count');
+const commentsTotalElement = document.querySelector('.social__comment-total-count');
+const COMMENTS_PER_PORTION = 5;
+let pictureComments = [];
+let commentsShown = 0;
 
-const getComment = ({avatar, name, message}) => {
-  const comment = commentElement.cloneNode(true);
-  const socialPictureElement = comment.querySelector('.social__picture');
-  socialPictureElement.src = avatar;
-  socialPictureElement.alt = name;
-  comment.querySelector('.social__text').textContent = message;
-  return comment;
+const addComments = () => {
+  const comments = pictureComments.slice(commentsShown, commentsShown + COMMENTS_PER_PORTION);
+  const commentsLength = comments.length + commentsShown;
+  comments.forEach(({avatar, name, message}) => {
+    const commentItemElement = commentElement.cloneNode(true);
+    const pictureElement = commentItemElement.querySelector('.social__picture');
+    pictureElement.src = avatar;
+    pictureElement.alt = name;
+    commentItemElement.querySelector('.social__text').textContent = message;
+    commentListElement.append(commentItemElement);
+  });
+  commentsShownElement.textContent = commentsLength;
+  commentsTotalElement.textContent = `${pictureComments.length}`;
+  if (pictureComments.length <= commentsLength) {
+    commentsLoaderElement.classList.add('hidden');
+  }
+  commentsShown += COMMENTS_PER_PORTION;
 };
 
-const displayComments = (comments) => {
-  const commentsFragmentElement = document.createDocumentFragment();
-  comments.forEach((element) => {
-    const newComment = getComment(element);
-    commentsFragmentElement.append(newComment);
-  });
-  commentListElement.innerHTML = '';
-  commentListElement.append(commentsFragmentElement);
+const clearComments = () => {
+  while (commentListElement.firstChild) {
+    commentListElement.removeChild(commentListElement.firstChild);
+  }
+  commentsShown = 0;
+  commentsLoaderElement.classList.remove('hidden');
+};
+
+const displayComments = (сomments) => {
+  pictureComments = сomments;
+  clearComments();
+  addComments();
+  commentsLoaderElement.addEventListener('click', addComments);
 };
 
 export {displayComments};
