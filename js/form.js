@@ -7,7 +7,7 @@ const errorText = {
 };
 
 const body = document.querySelector('body');
-const form = document.querySelector('.img-upload__foarm');
+const form = document.querySelector('.img-upload__form');
 const overlay = form.querySelector('.img-upload__overlay');
 const cancelButton = form.querySelector('.img-upload__cancel');
 const fileField = form.querySelector('.img-upload__input');
@@ -71,21 +71,21 @@ const onForumSubmit = (evt) => {
   pristine.validate();
 };
 
-pristine.addValidation(
+pristine.addValidator(
   hashtagField,
   hasValidCount,
   errorText.INVALID_COUNT,
   3,
   true
 );
-pristine.addValidation(
+pristine.addValidator(
   hashtagField,
   hasUniqueTags,
   errorText.NOT_UNIQUE,
   2,
   true
 );
-pristine.addValidation(
+pristine.addValidator(
   hashtagField,
   hasValidTags,
   errorText.INVALID_PATTERN,
