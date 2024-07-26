@@ -1,8 +1,8 @@
 const MAX_HASHTAGS = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const errorText = {
-  INVALID_COUNT: `Превышен максимум хэштегов: ${MAX_HASHTAGS}`,
-  NOT_UNIQUE: 'Хэштеги не уникальные',
+  INVALID_COUNT: `Максимум ${MAX_HASHTAGS} хэштегов`,
+  NOT_UNIQUE: 'Хэштеги должны быть уникальными',
   INVALID_PATTERN: 'Неправильный хэштег',
 };
 
@@ -40,7 +40,7 @@ const isTextFieldFocused = () =>
 
 const normalizeTags = (tagString) => tagString
   .trim()
-  .splir(' ')
+  .split(' ')
   .filter((tag) => Boolean(tag.length));
 
 const hasValidTags = (value) => normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
@@ -53,7 +53,7 @@ const hasUniqueTags = (value) => {
 };
 function onDocumentKeydown(evt) {
   if (evt.key === 'Escape' && !isTextFieldFocused()) {
-    evt.perventDefault();
+    evt.preventDefault();
     hideModal();
   }
 }
@@ -67,7 +67,7 @@ const onFileInputChange = () => {
 };
 
 const onForumSubmit = (evt) => {
-  evt.perventDefault();
+  evt.preventDefault();
   pristine.validate();
 };
 
