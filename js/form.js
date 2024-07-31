@@ -66,11 +66,6 @@ const onFileInputChange = () => {
   showModal();
 };
 
-const onForumSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-};
-
 pristine.addValidator(
   hashtagField,
   hasValidCount,
@@ -92,6 +87,13 @@ pristine.addValidator(
   1,
   true
 );
+
+const onForumSubmit = (evt) => {
+  const isValid = pristine.validate();
+  if (!isValid) {
+    evt.preventDefault();
+  }
+};
 
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
