@@ -1,3 +1,4 @@
+import './form.js';
 import {getPictures} from './data.js';
 import {generateThumbnails} from './thumbnail.js';
 import {createBigPhoto} from './full-photo.js';
